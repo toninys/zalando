@@ -114,14 +114,12 @@ $( document ).ready(function() {
           // $('#show-data').append('<img src="' + data.content[0].name + '" />');
           for(i=0; i<20;i++){
             $('#show-data').append(
-               '<a href="'
-              + data.content[i].shopUrl
-              + '"> '
-              +'<div class="col-sm-3 product"><div>'
-              + data.content[i].name
+              '<div class="col-sm-3 product"><div>'
               + '<img src="' + data.content[i].media.images[0].largeUrl+ '" />'
-              + + data.content[i].units[i].price.value + '€'
-              + '</a></div></div>'
+              + data.content[i].name
+              + '<a href="'
+              + data.content[i].shopUrl
+              + '">linkki</a></div></div>'
             );
 
           }
