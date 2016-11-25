@@ -33,12 +33,12 @@
 
 <div class="container-fluid orange-bar">
 </div>
-
+<!--
 <div class="container text-center products">
   <div class="row">
     <div class="col-sm-3 product">
       <div>
-        <p id="show-data"></p>
+
       </div>
     </div>
     <div class="col-sm-3 product">
@@ -101,16 +101,28 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+<p id="show-data"></p>
 
 <script>
 $( document ).ready(function() {
     var showData = $('#show-data');
 
-        $.getJSON('https://api.zalando.com/articles/TA111B0Q9-G11', function (data) {
+        $.getJSON('https://api.zalando.com/articles?sale=sale', function (data) {
           console.log(data);
 
-          $('#show-data').append('<img src="' +data.media.images[0].largeUrl + '" />');
+          // $('#show-data').append('<img src="' + data.content[0].name + '" />');
+          for(i=0; i<20;i++){
+            $('#show-data').append(
+              '<div class="col-sm-3 product"><div>'
+              + '<img src="' + data.content[i].media.images[0].largeUrl+ '" />'
+              + data.content[i].name
+              + '<a href="'
+              + data.content[i].shopUrl
+              + '">linkki</a></div></div>'
+            );
+
+          }
         });
 
   });
