@@ -1,0 +1,22 @@
+/* #FF6900 */
+
+
+body{
+  font-family: "Gotham A", "Gotham B";
+  font-style: normal;
+  font-weight: 500;
+}
+
+.orange-bar{
+  background-color: #FF6900;
+  height:50px;
+  margin-top:30px;
+  margin-bottom:80px;
+}
+.product{
+  padding-bottom:20px;
+}
+.product > div{
+  border:1px solid #bbb;
+  height:200px;
+}
