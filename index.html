@@ -32,14 +32,13 @@
 </div>
 
 <div class="container-fluid orange-bar">
-<p id="show-data"></p>
 </div>
 
 <div class="container text-center products">
   <div class="row">
     <div class="col-sm-3 product">
       <div>
-        tuote
+        <p id="show-data"></p>
       </div>
     </div>
     <div class="col-sm-3 product">
@@ -111,7 +110,7 @@ $( document ).ready(function() {
         $.getJSON('https://api.zalando.com/articles/TA111B0Q9-G11', function (data) {
           console.log(data);
 
-          $('#show-data').append(data.name);
+          $('#show-data').append('<img src="' +data.media.images[0].largeUrl + '" />');
         });
 
   });

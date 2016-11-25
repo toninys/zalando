@@ -20,3 +20,6 @@ body{
   border:1px solid #bbb;
   height:200px;
 }
+.product img{
+  width:100%;
+}
