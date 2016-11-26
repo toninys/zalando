@@ -112,6 +112,20 @@ function salePercent(originalPrice, salePrice){
   var precentage = 100 -(salePrice / originalPrice * 100);
   return Math.round(precentage).toString();
 };
+
+function getCurrency(currency){
+  var currency = currency;
+  switch (currency){
+    case 'GBP' : currency = '£';
+    break;
+
+    case 'EUR' : currency = '€';
+    break;
+
+    default: currency = '';
+  }
+  return currency;
+}
 $( document ).ready(function() {
     var showData = $('#show-data');
 
@@ -126,10 +140,10 @@ $( document ).ready(function() {
               + '<img src="' + data.content[i].media.images[0].largeUrl+ '" />'
               + data.content[i].name
               + '<br /> original: '
-              + data.content[i].units[0].originalPrice.value
+              + data.content[i].units[0].originalPrice.value + getCurrency(data.content[i].units[0].price.currency)
               +
               '<br /> sale: '
-              + data.content[i].units[0].price.value
+              + data.content[i].units[0].price.value + getCurrency(data.content[i].units[0].price.currency)
               + '</div></a></div>'
             );
 
