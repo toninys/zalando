@@ -32,6 +32,8 @@
 </div>
 
 <div class="container-fluid orange-bar">
+
+
 </div>
 <!--
 <div class="container text-center products">
@@ -105,6 +107,11 @@
 <p id="show-data"></p>
 
 <script>
+
+function salePercent(originalPrice, salePrice){
+  var precentage = 100 -(salePrice / originalPrice * 100);
+  return Math.round(precentage).toString();
+};
 $( document ).ready(function() {
     var showData = $('#show-data');
 
@@ -114,12 +121,16 @@ $( document ).ready(function() {
           // $('#show-data').append('<img src="' + data.content[0].name + '" />');
           for(i=0; i<20;i++){
             $('#show-data').append(
-              '<div class="col-sm-3 product"><div>'
+              '<div class="col-sm-3 product"><a href="' + data.content[i].shopUrl + '"><div>'
+              + salePercent(data.content[i].units[0].originalPrice.value, data.content[i].units[0].price.value)
               + '<img src="' + data.content[i].media.images[0].largeUrl+ '" />'
               + data.content[i].name
-              + '<a href="'
-              + data.content[i].shopUrl
-              + '">linkki</a></div></div>'
+              + '<br /> original: '
+              + data.content[i].units[0].originalPrice.value
+              +
+              '<br /> sale: '
+              + data.content[i].units[0].price.value
+              + '</div></a></div>'
             );
 
           }

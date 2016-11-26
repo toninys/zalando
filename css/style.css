@@ -16,7 +16,7 @@ body{
 .product{
   padding-bottom:20px;
 }
-.product > div{
+.product > a > div{
   border:1px solid #bbb;
   /*height:200px;*/
 }
