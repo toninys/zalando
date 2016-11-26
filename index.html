@@ -19,93 +19,35 @@
   <![endif]-->
 </head>
 <body>
-<div class="container text-center">
+<div class="container topbar text-center">
   <div class="row">
-    <div class="col-md-6">
-
-      <h1>zalando</h1>
+    <div class="col-md-4">
+      <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Zalando_logo.svg/1024px-Zalando_logo.svg.png"/>
     </div>
-    <div class="col-md-6">
-      <h1>salet</h1>
+    <div class="col-md-8">
+      <h1>SALE</h1>
     </div>
   </div>
 </div>
 
 <div class="container-fluid orange-bar">
-
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Get the best sale products and save money!</h2>
+    </div>
+  </div>
+</div>
 
 </div>
-<!--
-<div class="container text-center products">
-  <div class="row">
-    <div class="col-sm-3 product">
-      <div>
 
-      </div>
-    </div>
-    <div class="col-sm-3 product">
-      <div>
-        tuote
-      </div>
-    </div>
-    <div class="col-sm-3 product">
-      <div>
-        tuote
-      </div>
-    </div>
-    <div class="col-sm-3 product">
-      <div>
-        tuote
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-3 product">
-      <div>
-        tuote
-      </div>
-    </div>
-    <div class="col-sm-3 product">
-      <div>
-        tuote
-      </div>
-    </div>
-    <div class="col-sm-3 product">
-      <div>
-        tuote
-      </div>
-    </div>
-    <div class="col-sm-3 product">
-      <div>
-        tuote
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-3 product">
-      <div>
-        tuote
-      </div>
-    </div>
-    <div class="col-sm-3 product">
-      <div>
-        tuote
-      </div>
-    </div>
-    <div class="col-sm-3 product">
-      <div>
-        tuote
-      </div>
-    </div>
-    <div class="col-sm-3 product">
-      <div>
-        tuote
-      </div>
-    </div>
-  </div>
-</div> -->
-<p id="show-data"></p>
 
+<div id="show-data"></div>
+<div class="container-fluid next-bar">
+  <a href="javascript:void(0)" class="next">Load more</a>
+</div>
+
+<img  class="footer" src="https://onsite.ztat.net/SCC-1244_gift_voucher_teaser_footer/image/gv_teaser_sunglasses.jpg"/>
 <script>
 
 function salePercent(originalPrice, salePrice){
@@ -126,31 +68,64 @@ function getCurrency(currency){
   }
   return currency;
 }
+var urlId = 0;
+var showData = $('#show-data');
+var url = 'https://api.zalando.com/articles?sale=sale';
+function changeUrl(){
+  url = 'https://api.zalando.com/articles?sale=sale&page=' + urlId;
+};
+$('.next').click(function() {
+  nextPage();
+});
+// $(window).scroll(function() {
+//    if($(window).scrollTop() + $(window).height() == $(document).height()) {
+//        nextPage();
+//    }
+// });
+function nextPage(){
+  urlId = urlId + 1;
+  changeUrl();
+  init();
+};
 $( document ).ready(function() {
-    var showData = $('#show-data');
 
-        $.getJSON('https://api.zalando.com/articles?sale=sale', function (data) {
+  init();
+});
+
+function init(){
+
+
+
+        $.getJSON(url, function (data) {
           console.log(data);
+          console.log(data.totalPages);
+
+
 
           // $('#show-data').append('<img src="' + data.content[0].name + '" />');
           for(i=0; i<20;i++){
             $('#show-data').append(
               '<div class="col-sm-3 product"><a href="' + data.content[i].shopUrl + '"><div>'
+              + '<p class="redBox">-'
               + salePercent(data.content[i].units[0].originalPrice.value, data.content[i].units[0].price.value)
+              + '%</p>'
               + '<img src="' + data.content[i].media.images[0].largeUrl+ '" />'
+              + '<div class="product-info">'
+              + '<h2>'
               + data.content[i].name
-              + '<br /> original: '
-              + data.content[i].units[0].originalPrice.value + getCurrency(data.content[i].units[0].price.currency)
-              +
-              '<br /> sale: '
+              + '</h2>'
+              + '<span class="salePrice"> '
               + data.content[i].units[0].price.value + getCurrency(data.content[i].units[0].price.currency)
-              + '</div></a></div>'
+              +
+              '</span><span class="price">'
+              + data.content[i].units[0].originalPrice.value + getCurrency(data.content[i].units[0].price.currency)
+              + '</span></div></div></a></div>'
             );
 
           }
         });
 
-  });
+  };
 
 
 </script>
