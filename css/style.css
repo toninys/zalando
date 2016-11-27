@@ -2,21 +2,28 @@
 
 
 body{
-  font-family: "Gotham A", "Gotham B";
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: 500;
 }
 .topbar{
-  padding-top:20px;
+  padding-top:30px;
+  padding-bottom:30px;
+  /*background-color: #D2B07B;*/
+  background:#D2B07B url('../images/header-bg.jpg') no-repeat center top;
+  background-size: cover;
 }
 h1{
-  color:#FF6900;
-  font-size:50px;
-  font-weight: 800;
+  color:#fff;
+  font-size:60px;
+  font-weight: 500;
+  text-align:right;
+  margin:0;
+  padding:0;
 }
 .orange-bar{
   background-color: #FF6900;
-  margin-top:30px;
+
   padding-top:30px;
   padding-bottom:30px;
 }
@@ -37,14 +44,18 @@ h1{
   background-color:transparent;
 }
 .product > a > div{
-  border:1px solid #bbb;
+  border:1px solid #ddd;
   /*height:200px;*/
   position: relative;
   box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.1);
   transition: all .125s ease-in-out;
 }
 .product > a:hover > div{
-  box-shadow: 2px 2px 7px 0 rgba(0,0,0,0.3);
+  box-shadow: 2px 2px 7px 0 rgba(0,0,0,0.2);
+}
+.product > a:hover .product-info{
+  background-color: rgba(255,255,255,0.7);
+
 }
 .product img{
   width:100%;
@@ -67,6 +78,7 @@ h1{
   display:block;
   width:100%;
   padding:15px;
+  transition: all .125s ease-in-out;
 }
 .product h2{
   color:#111;
